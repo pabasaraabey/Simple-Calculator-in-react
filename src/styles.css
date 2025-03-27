@@ -1,0 +1,125 @@
+:root {
+    --primary-gradient-start: #f6d365;
+    --primary-gradient-end: #fda085;
+    --display-bg: #2c3e50;
+    --display-text: #ecf0f1;
+    --button-bg: white;
+    --button-text: #2c3e50;
+    --transition-speed: 5s;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, 
+        var(--primary-gradient-start), 
+        var(--primary-gradient-end)
+    );
+    font-family: 'Arial', sans-serif;
+    transition: 
+        background var(--transition-speed) ease,
+        background-color var(--transition-speed) ease;
+}
+
+.calculator-grid {
+    width: 320px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.output {
+    grid-column: 1 / -1;
+    background-color: var(--display-bg);
+    color: var(--display-text);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 15px;
+    height: 100px;
+    border-bottom: 2px solid color-mix(in srgb, var(--display-bg) 80%, white);
+    overflow: hidden;
+    transition: 
+        background-color var(--transition-speed) ease,
+        color var(--transition-speed) ease;
+}
+
+.output .previous-operand {
+    color: color-mix(in srgb, var(--display-text) 60%, transparent);
+    font-size: 18px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    transition: color var(--transition-speed) ease;
+}
+
+.output .current-operand {
+    color: var(--display-text);
+    font-size: 40px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1px;
+    background-color: #ecf0f1;
+}
+
+.calculator-grid > button {
+    border: none;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 20px;
+    transition: 
+        all 0.2s ease,
+        background-color var(--transition-speed) ease,
+        color var(--transition-speed) ease;
+}
+
+.calculator-grid > button:hover {
+    background-color: color-mix(in srgb, var(--button-text) 20%, transparent);
+    color: white;
+}
+
+.calculator-grid > button:active {
+    transform: scale(0.95);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.calculator-grid > button.special-op {
+    background-color: color-mix(in srgb, #e67e22 80%, white);
+    color: white;
+}
+
+.calculator-grid > button.operator {
+    background-color: color-mix(in srgb, #2ecc71 80%, white);
+    color: white;
+}
+
+.calculator-grid > button.equals {
+    background-color: color-mix(in srgb, #9b59b6 80%, white);
+    color: white;
+}
